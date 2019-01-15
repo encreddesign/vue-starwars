@@ -1,0 +1,15 @@
+/* ---- base ---- */
+
+body {
+  margin: 0;
+  font-family: $font-primary;
+
+  a {
+    text-decoration: none;
+    color: $color-black;
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+}

@@ -1,0 +1,19 @@
+/* ---- l-flex ---- */
+
+.l-flex {
+  display: flex;
+  width: 100%;
+  flex-flow: row;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: center;
+
+  &__column {
+    display: block;
+    padding: 15px;
+    
+    &--3 {
+      width: 33.33%;
+    }
+  }
+}
