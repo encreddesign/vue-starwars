@@ -4,6 +4,8 @@ import Home from '../views/Home.vue';
 
 Vue.use(Router);
 
+const people = () => import('../views/People.vue');
+
 export default new Router({
   mode: 'history',
   base: process.env.BASE_URL,
@@ -12,6 +14,11 @@ export default new Router({
       path: '/',
       name: 'home',
       component: Home,
+    },
+    {
+      path: '/people/:id?',
+      name: 'people',
+      component: people,
     },
   ],
 });

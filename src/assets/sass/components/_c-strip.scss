@@ -1,0 +1,41 @@
+/* ---- c-strip ---- */
+
+.c-split {
+  display: block;
+  width: 100%;
+  height: 100%;
+
+  @for $index from 0 through $character-num-max {
+    &--fade#{$index} {
+      opacity: 0;
+      animation: fadeIn 1s ease-in #{$index}s forwards;
+    }
+  }
+
+  &--people {
+    &:hover {
+      .c-split__image {
+        animation: people 0.5s ease-in-out alternate infinite;
+      }
+    }
+  }
+
+  &__image {
+    display: block;
+    width: 100%;
+    text-align: center;
+
+    svg {
+      width: 80%;
+    }
+  }
+
+  &__title {
+    font-size: $font-size-large;
+    text-align: center;
+  }
+
+  &__button {
+    text-align: center;
+  }
+}

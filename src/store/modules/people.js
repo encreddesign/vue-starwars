@@ -1,11 +1,11 @@
 import actions from '../actions';
 import mutations from '../mutations';
-import { getResources } from '../getters';
+import { getPeople } from '../getters';
 
 export default {
   namespaced: true,
   state: {
-    resources: {
+    people: {
       loading: false,
       data: null,
     },
@@ -13,6 +13,6 @@ export default {
   actions,
   mutations,
   getters: {
-    getResources,
+    getPeople,
   },
 };

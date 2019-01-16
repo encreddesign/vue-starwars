@@ -1,10 +1,13 @@
 /* base */
 @import "base/variables";
 @import "base/base";
+@import "base/utilities";
+@import "base/animations";
 
 /* components */
-@import "components/strip";
-@import "components/popup";
+@import "components/c-strip";
+@import "components/c-button";
+@import "components/c-popup";
 
 /* layouts */
 @import "layouts/l-page";

@@ -1,18 +1,19 @@
 <template>
   <div class="l-page">
     <div
-      v-if="!resources.loading"
+      v-if="!people.loading"
       class="l-flex">
-      <template v-for="(strip, index) in getResources()">
+      <template v-for="(character, index) in getPeople()">
         <div
-          v-if="types.indexOf(strip.handle) !== -1"
+          v-if="index < max"
           :key="`strip_${index}`"
           class="l-flex__column l-flex__column--3">
           <Strip
-            :title="strip.name"
-            :handle="strip.handle"
-            :link="strip.link"
-            :animation="types[index]"/>
+            :index="index"
+            animation="fade"
+            :title="character.name"
+            handle="people"
+            :link="`/people/${character.id}`"/>
         </div>
       </template>
     </div>
@@ -29,27 +30,23 @@ import ActionTypes from '../store/types/action.types';
 import Strip from '../components/Strip.vue';
 
 export default {
-  name: 'Home',
+  name: 'People',
   components: {
     Strip,
   },
   data() {
     return {
-      types: [
-        'people',
-        'planets',
-        'starships',
-      ],
+      max: 4,
     };
   },
   computed: {
-    ...mapState('home', ['resources']),
+    ...mapState('people', ['people']),
   },
   methods: {
-    ...mapActions('home', {
-      fetch: ActionTypes.FETCH_RESOURCES,
+    ...mapActions('people', {
+      fetch: ActionTypes.FETCH_CHARACTERS,
     }),
-    ...mapGetters('home', ['getResources']),
+    ...mapGetters('people', ['getPeople']),
   },
   created() {
     this.fetch();
