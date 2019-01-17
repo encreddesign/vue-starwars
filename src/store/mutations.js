@@ -25,4 +25,64 @@ export default {
 
     newState.people.data = payload.data;
   },
+  [MutationTypes.RENDER_CHARACTER](state, payload) {
+    const newState = state;
+
+    newState.character.loading = false;
+
+    if (payload.message) {
+      newState.character.data = payload.data;
+      return;
+    }
+
+    newState.character.data = payload.data;
+  },
+  [MutationTypes.RENDER_PLANETS](state, payload) {
+    const newState = state;
+
+    newState.planets.loading = false;
+
+    if (payload.message) {
+      newState.planets.data = payload.data;
+      return;
+    }
+
+    newState.planets.data = payload.data;
+  },
+  [MutationTypes.RENDER_PLANET](state, payload) {
+    const newState = state;
+
+    newState.planet.loading = false;
+
+    if (payload.message) {
+      newState.planet.data = payload.data;
+      return;
+    }
+
+    newState.planet.data = payload.data;
+  },
+  [MutationTypes.RENDER_STARSHIPS](state, payload) {
+    const newState = state;
+
+    newState.starships.loading = false;
+
+    if (payload.message) {
+      newState.starships.data = payload.data;
+      return;
+    }
+
+    newState.starships.data = payload.data;
+  },
+  [MutationTypes.RENDER_STARSHIP](state, payload) {
+    const newState = state;
+
+    newState.starship.loading = false;
+
+    if (payload.message) {
+      newState.starship.data = payload.data;
+      return;
+    }
+
+    newState.starship.data = payload.data;
+  },
 };

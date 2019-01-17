@@ -9,7 +9,8 @@
       <router-link
         :to="link"
         class="c-button">
-        <span>View</span>
+        <span v-if="loading">Loading...</span>
+        <span v-else>View</span>
       </router-link>
     </div>
   </div>
@@ -26,6 +27,7 @@ export default {
     handle: String,
     link: String,
     animation: String,
+    loading: Boolean,
   },
   data() {
     return {

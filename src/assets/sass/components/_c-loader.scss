@@ -1,0 +1,27 @@
+/* ---- c-loader ---- */
+
+.c-loader {
+  display: block;
+  width: 100%;
+  text-align: center;
+  margin-bottom: 40px;
+
+  span {
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    margin: 0 10px;
+
+    &:nth-child(1n+1) {
+      animation: rotateX 0.5s ease-in-out infinite;
+    }
+
+    &:nth-child(2n+2) {
+      animation: rotateY 0.5s ease-in-out infinite;
+    }
+
+    &:nth-child(3n+3) {
+      animation: rotateZ 0.5s ease-in-out infinite;
+    }
+  }
+}

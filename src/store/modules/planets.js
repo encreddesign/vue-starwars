@@ -1,15 +1,15 @@
 import actions from '../actions';
 import mutations from '../mutations';
-import { getPeople } from '../getters';
+import { getPlanets } from '../getters';
 
 export default {
   namespaced: true,
   state: {
-    people: {
+    planets: {
       loading: false,
       data: null,
     },
-    character: {
+    planet: {
       loading: false,
       data: null,
     },
@@ -17,6 +17,6 @@ export default {
   actions,
   mutations,
   getters: {
-    getPeople,
+    getPlanets,
   },
 };

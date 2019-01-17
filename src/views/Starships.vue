@@ -1,12 +1,12 @@
 <template>
   <div class="l-page">
     <Loader
-      v-if="people.loading"
+      v-if="starships.loading"
       :tiles="tiles"/>
     <div
-      v-if="!people.loading"
+      v-if="!starships.loading"
       class="l-flex">
-      <template v-for="(char, index) in getPeople()">
+      <template v-for="(starship, index) in getStarships()">
         <div
           v-if="index < max"
           :key="`strip_${index}`"
@@ -14,17 +14,17 @@
           <Strip
             :index="index"
             animation="fade"
-            :title="char.name"
-            handle="people"
-            :loading="isLoading(char.id)"
-            :link="`/people/${char.id}`"/>
+            :title="starship.name"
+            handle="starships"
+            :loading="isLoading(starship.id)"
+            :link="`/planets/${starship.id}`"/>
         </div>
       </template>
     </div>
 
     <Popup
-      v-if="!character.loading && character.data && isId()"
-      :object="character.data"
+      v-if="!starship.loading && starship.data && isId()"
+      :object="starship.data"
       :filter="fields"
       :onClose="onClose"/>
   </div>
@@ -42,7 +42,7 @@ import Popup from '../components/Popup.vue';
 import Loader from '../components/Loader.vue';
 
 export default {
-  name: 'People',
+  name: 'Starships',
   components: {
     Strip,
     Popup,
@@ -50,14 +50,14 @@ export default {
   },
   data() {
     return {
-      max: 4,
+      max: 5,
       fields: [
         'name',
-        'height',
-        'mass',
-        'hair_color',
-        'birth_year',
-        'gender',
+        'model',
+        'manufacturer',
+        'crew',
+        'passengers',
+        'starship_class',
       ],
       tiles: [
         'black',
@@ -67,37 +67,37 @@ export default {
     };
   },
   computed: {
-    ...mapState('people', ['people', 'character']),
+    ...mapState('starships', ['starships', 'starship']),
   },
   methods: {
-    ...mapActions('people', {
-      fetchPeople: ActionTypes.FETCH_CHARACTERS,
-      fetchCharacter: ActionTypes.FETCH_CHARACTER,
+    ...mapActions('starships', {
+      fetchStarships: ActionTypes.FETCH_STARSHIPS,
+      fetchStarship: ActionTypes.FETCH_STARSHIP,
     }),
-    ...mapGetters('people', ['getPeople']),
+    ...mapGetters('starships', ['getStarships']),
     isId() {
       return this.$route.params.id !== undefined;
     },
-    isLoading(characterId) {
-      return this.character.loading && this.$route.params.id === characterId;
+    isLoading(starshipId) {
+      return this.starships.loading && this.$route.params.id === starshipId;
     },
     onClose() {
-      this.character.data = null;
+      this.starship.data = null;
     },
   },
   beforeRouteUpdate(to, from, next) {
     if (to.params.id) {
-      this.fetchCharacter(to.params.id);
+      this.fetchStarships(to.params.id);
     }
 
     next();
   },
   created() {
     if (this.$route.params.id) {
-      this.fetchCharacter(this.$route.params.id);
+      this.fetchStarship(this.$route.params.id);
     }
 
-    this.fetchPeople();
+    this.fetchStarships();
   },
 };
 </script>

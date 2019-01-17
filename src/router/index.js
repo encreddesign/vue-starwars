@@ -5,6 +5,8 @@ import Home from '../views/Home.vue';
 Vue.use(Router);
 
 const people = () => import('../views/People.vue');
+const planets = () => import('../views/Planets.vue');
+const starships = () => import('../views/Starships.vue');
 
 export default new Router({
   mode: 'history',
@@ -19,6 +21,16 @@ export default new Router({
       path: '/people/:id?',
       name: 'people',
       component: people,
+    },
+    {
+      path: '/planets/:id?',
+      name: 'planets',
+      component: planets,
+    },
+    {
+      path: '/starships/:id?',
+      name: 'starships',
+      component: starships,
     },
   ],
 });

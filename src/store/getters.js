@@ -26,9 +26,40 @@ export const getPeople = (state) => {
       const updatedCharacter = character;
 
       updatedCharacter.id = updatedCharacter.url.match(/\d+/i)[0];
-      updatedCharacter.starshipIds = updatedCharacter.starships.map(url => url.match(/\d+/i)[0]);
 
       return updatedCharacter;
+    });
+  }
+
+  return [];
+};
+
+export const getPlanets = (state) => {
+  const planets = state.planets;
+
+  if (planets.data && planets.data.results) {
+    return planets.data.results.map((planet) => {
+      const updatedPlanet = planet;
+
+      updatedPlanet.id = updatedPlanet.url.match(/\d+/i)[0];
+
+      return updatedPlanet;
+    });
+  }
+
+  return [];
+};
+
+export const getStarships = (state) => {
+  const starships = state.starships;
+
+  if (starships.data && starships.data.results) {
+    return starships.data.results.map((starship) => {
+      const updatedStarship = starship;
+
+      updatedStarship.id = updatedStarship.url.match(/\d+/i)[0];
+
+      return updatedStarship;
     });
   }
 

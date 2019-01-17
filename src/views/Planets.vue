@@ -1,12 +1,12 @@
 <template>
   <div class="l-page">
     <Loader
-      v-if="people.loading"
+      v-if="planets.loading"
       :tiles="tiles"/>
     <div
-      v-if="!people.loading"
+      v-if="!planets.loading"
       class="l-flex">
-      <template v-for="(char, index) in getPeople()">
+      <template v-for="(planet, index) in getPlanets()">
         <div
           v-if="index < max"
           :key="`strip_${index}`"
@@ -14,17 +14,17 @@
           <Strip
             :index="index"
             animation="fade"
-            :title="char.name"
-            handle="people"
-            :loading="isLoading(char.id)"
-            :link="`/people/${char.id}`"/>
+            :title="planet.name"
+            handle="planets"
+            :loading="isLoading(planet.id)"
+            :link="`/planets/${planet.id}`"/>
         </div>
       </template>
     </div>
 
     <Popup
-      v-if="!character.loading && character.data && isId()"
-      :object="character.data"
+      v-if="!planet.loading && planet.data && isId()"
+      :object="planet.data"
       :filter="fields"
       :onClose="onClose"/>
   </div>
@@ -42,7 +42,7 @@ import Popup from '../components/Popup.vue';
 import Loader from '../components/Loader.vue';
 
 export default {
-  name: 'People',
+  name: 'Planets',
   components: {
     Strip,
     Popup,
@@ -50,14 +50,14 @@ export default {
   },
   data() {
     return {
-      max: 4,
+      max: 6,
       fields: [
         'name',
-        'height',
-        'mass',
-        'hair_color',
-        'birth_year',
-        'gender',
+        'rotation_period',
+        'orbital_period',
+        'diameter',
+        'terrain',
+        'surface_water',
       ],
       tiles: [
         'black',
@@ -67,37 +67,37 @@ export default {
     };
   },
   computed: {
-    ...mapState('people', ['people', 'character']),
+    ...mapState('planets', ['planets', 'planet']),
   },
   methods: {
-    ...mapActions('people', {
-      fetchPeople: ActionTypes.FETCH_CHARACTERS,
-      fetchCharacter: ActionTypes.FETCH_CHARACTER,
+    ...mapActions('planets', {
+      fetchPlanets: ActionTypes.FETCH_PLANETS,
+      fetchPlanet: ActionTypes.FETCH_PLANET,
     }),
-    ...mapGetters('people', ['getPeople']),
+    ...mapGetters('planets', ['getPlanets']),
     isId() {
       return this.$route.params.id !== undefined;
     },
-    isLoading(characterId) {
-      return this.character.loading && this.$route.params.id === characterId;
+    isLoading(planetId) {
+      return this.planet.loading && this.$route.params.id === planetId;
     },
     onClose() {
-      this.character.data = null;
+      this.planet.data = null;
     },
   },
   beforeRouteUpdate(to, from, next) {
     if (to.params.id) {
-      this.fetchCharacter(to.params.id);
+      this.fetchPlanet(to.params.id);
     }
 
     next();
   },
   created() {
     if (this.$route.params.id) {
-      this.fetchCharacter(this.$route.params.id);
+      this.fetchPlanet(this.$route.params.id);
     }
 
-    this.fetchPeople();
+    this.fetchPlanets();
   },
 };
 </script>

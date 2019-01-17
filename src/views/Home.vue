@@ -1,5 +1,8 @@
 <template>
   <div class="l-page">
+    <Loader
+      v-if="resources.loading"
+      :tiles="tiles"/>
     <div
       v-if="!resources.loading"
       class="l-flex">
@@ -27,11 +30,13 @@ import {
 } from 'vuex';
 import ActionTypes from '../store/types/action.types';
 import Strip from '../components/Strip.vue';
+import Loader from '../components/Loader.vue';
 
 export default {
   name: 'Home',
   components: {
     Strip,
+    Loader,
   },
   data() {
     return {
@@ -39,6 +44,11 @@ export default {
         'people',
         'planets',
         'starships',
+      ],
+      tiles: [
+        'black',
+        'red',
+        'yellow',
       ],
     };
   },
